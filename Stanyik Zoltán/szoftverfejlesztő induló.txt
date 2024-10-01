@@ -1,0 +1,7 @@
+1. versszak: Kódolunk reggel, kódolunk éjjel, A gép előtt ülve, sosem félve. Algoritmusok tánca, bugok harca, A fejlesztők élete, ez a mi harcunk.
+
+2. versszak: Git commit, push és pull request, A csapatmunka mindig a legjobb teszt. Sprint és backlog, agilis módszer, A siker kulcsa, ez a mi fegyverünk.
+
+3. versszak: Debugging éjjel, tesztelés nappal, A hibák javítása, ez a mi nappal. Refaktorálás, tiszta kód írása, A minőség a cél, ez a mi irányunk.
+
+4. versszak: Deploy és release, a végső lépés, A felhasználók öröme, ez a mi célunk. A szoftverfejlesztők büszkén állnak, A jövőt építjük, ez a mi álmunk.
