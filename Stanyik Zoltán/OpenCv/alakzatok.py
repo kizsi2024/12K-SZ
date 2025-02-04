@@ -15,6 +15,7 @@ cv2.rectangle(img, (230, 320), (280, 375), (255, 0, 0), 3)
 cv2.rectangle(img, (310, 320), (360, 375), (255, 0, 0), 3)
 cv2.line(img, (200, 300), (300, 100), (255, 0, 0, 3))
 cv2.line(img, (400, 300), (300, 100), (255, 0, 0, 3))
+cv2.putText(img, "House", (360, 200), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 150, 0), 3)
 
 cv2.imshow("Image", img)
 
