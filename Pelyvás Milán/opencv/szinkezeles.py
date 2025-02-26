@@ -35,32 +35,46 @@ def stackImages(scale,imgArray):
         ver = hor
     return ver
 
+
 cv2.namedWindow("trackbars")
-cv2.resizeWindow("trackbars", 640,240)
-cv2.createTrackbar("hue min", "trackbars", 0,179, empty)
-cv2.createTrackbar("hue max", "trackbars", 179,179, empty)
-cv2.createTrackbar("sat min", "trackbars", 0,255, empty)
-cv2.createTrackbar("sat max", "trackbars", 255,255, empty)
-cv2.createTrackbar("val min", "trackbars", 0,255, empty)
-cv2.createTrackbar("val max", "trackbars", 255,255, empty)
+cv2.resizeWindow("trackbars", 640, 240)  # Resize the window to 640x240
+
+# Create trackbars for adjusting HSV values
+cv2.createTrackbar("hue min", "trackbars", 0, 179, empty)
+cv2.createTrackbar("hue max", "trackbars", 179, 179, empty)
+cv2.createTrackbar("sat min", "trackbars", 0, 255, empty)
+cv2.createTrackbar("sat max", "trackbars", 255, 255, empty)
+cv2.createTrackbar("val min", "trackbars", 0, 255, empty)
+cv2.createTrackbar("val max", "trackbars", 255, 255, empty)
 
 while True:
-    img = cv2.imread("Resources/lambo.png")
-    imghsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    img = cv2.imread("Resources/lambo.png")  # Read the image
+    imghsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)  # Convert the image to HSV color space
+
+    # Get trackbar positions for HSV values
     h_min = cv2.getTrackbarPos("hue min", "trackbars")
     h_max = cv2.getTrackbarPos("hue max", "trackbars")
     s_min = cv2.getTrackbarPos("sat min", "trackbars")
     s_max = cv2.getTrackbarPos("sat max", "trackbars")
     v_min = cv2.getTrackbarPos("val min", "trackbars")
     v_max = cv2.getTrackbarPos("val max", "trackbars")
-    print(h_max,h_min,s_max,s_min,v_max,v_min)
+
+    # Print the current HSV values
+    print(h_max, h_min, s_max, s_min, v_max, v_min)
+
+    # Define the lower and upper bounds for the mask
     lower = np.array([h_min, s_min, v_min])
     upper = np.array([h_max, s_max, v_max])
-    mask = cv2.inRange(imghsv, lower, upper)
-    imgresult = cv2.bitwise_and(img,img,mask=mask)
 
-    #cv2.imshow("lambo", img)
-    #cv2.imshow("lambo2", imghsv)
+    # Create a mask based on the defined bounds
+    mask = cv2.inRange(imghsv, lower, upper)
+
+    # Apply the mask to the original image using bitwise AND
+    imgresult = cv2.bitwise_and(img, img, mask=mask)
+
+    # Stack images for display
     imgstack = stackImages(0.5, ([img, imghsv], [mask, imgresult]))
+
+    # Display the stacked images
     cv2.imshow("lambo3", imgstack)
-    cv2.waitKey(1)
+    cv2.waitKey(1)  # Wait for a key press with a delay of 1 ms

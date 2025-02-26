@@ -33,19 +33,21 @@ def stackImages(scale,imgArray):
     return ver
 
 
+# Read the image
+img = cv2.imread("Resources/lena.png")  # Load the image from the specified path
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert the image to grayscale
 
+# Stack images for display
+imgstack = stackImages(0.5, ([img, imgGray, img], [img, img, img]))  # Stack images using the stackImages function
 
-img = cv2.imread("Resources/lena.png")
-imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# Create horizontal and vertical stacks of images
+imgHor = np.hstack((img, img))  # Stack images horizontally
+imgVer = np.vstack((img, img))  # Stack images vertically
 
-imgstack = stackImages(0.5, ([img,imgGray,img], [img,img,img]))
-
-
-imgHor = np.hstack((img,img))
-imgVer = np.vstack((img,img))
-
-#cv2.imshow("lena", img)
-#cv2.imshow("horizontal", imgHor)
-#cv2.imshow("ver", imgVer)
-cv2.imshow("stack", imgstack)
-cv2.waitKey(0)
+# Display the result
+# cv2.imshow("lena", img)  # Display the original image (commented out)
+# cv2.imshow("horizontal", imgHor)  # Display the horizontally stacked images (commented out)
+# cv2.imshow("ver", imgVer)  # Display the vertically stacked images (commented out)
+cv2.imshow("stack", imgstack)  # Display the stacked images using the stackImages function
+cv2.waitKey(0)  # Wait for a key press to close the window
+cv2.destroyAllWindows()  # Close all OpenCV windows
