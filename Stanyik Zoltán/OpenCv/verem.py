@@ -1,6 +1,7 @@
 import cv2  # OpenCV könyvtár importálása a képfeldolgozáshoz
 import numpy as np  # NumPy könyvtár importálása a képadatok kezeléséhez
 
+
 # A stackImages függvény, amely lehetővé teszi több kép összeillesztését (horizontálisan vagy vertikálisan)
 def stackImages(scale, imgArray):
     rows = len(imgArray)  # A képtömb sorainak száma
@@ -19,7 +20,8 @@ def stackImages(scale, imgArray):
                     imgArray[x][y] = cv2.resize(imgArray[x][y], (0, 0), None, scale, scale)
                 else:
                     # Ha nem, akkor az első képhez igazítjuk a méretet
-                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]), None, scale, scale)
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]),
+                                                None, scale, scale)
                 # Ha a kép szürkeárnyalatos, akkor átalakítjuk színes képpé
                 if len(imgArray[x][y].shape) == 2:
                     imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)
@@ -52,6 +54,7 @@ def stackImages(scale, imgArray):
 
     # Visszaadjuk a függőlegesen összeillesztett képet
     return ver
+
 
 # Kép betöltése
 img = cv2.imread("Resources/lena.png")

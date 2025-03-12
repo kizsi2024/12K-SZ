@@ -1,6 +1,7 @@
 import cv2  # OpenCV könyvtár importálása, amely képfeldolgozást biztosít.
 import numpy as np  # NumPy könyvtár importálása, amely segít a tömbök és mátrixok kezelésében.
 
+
 # Kép összerakó függvény, amely képes több képet összeilleszteni egyetlen képként
 def stackImages(scale, imgArray):
     rows = len(imgArray)  # Sorok száma a képek listájában
@@ -18,7 +19,8 @@ def stackImages(scale, imgArray):
                     imgArray[x][y] = cv2.resize(imgArray[x][y], (0, 0), None, scale, scale)
                 else:
                     # Ha a képek mérete eltér, akkor az első kép méretére állítjuk be őket.
-                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]), None, scale, scale)
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]),
+                                                None, scale, scale)
                 # Ha a képek szürkeárnyalatúak, akkor átalakítjuk őket színes képekké.
                 if len(imgArray[x][y].shape) == 2:
                     imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)
@@ -48,6 +50,7 @@ def stackImages(scale, imgArray):
         ver = hor  # Ha csak egy sor van, akkor nem kell további függőleges egyesítés.
 
     return ver  # Az összeillesztett képet visszaadja.
+
 
 # Kontúr detektáló függvény
 def getContours(img, imgContour):
@@ -80,7 +83,9 @@ def getContours(img, imgContour):
 
             # Téglalap rajzolása a formák köré és a forma típusának hozzáadása
             cv2.rectangle(imgContour, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            cv2.putText(imgContour, objectType, (x + (w // 2) - 30, y + (h // 2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
+            cv2.putText(imgContour, objectType, (x + (w // 2) - 30, y + (h // 2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
+                        (0, 0, 0), 2)
+
 
 # Kép betöltése
 img = cv2.imread("Resources/shapes.png")  # A 'Resources/shapes.png' képet betöltjük
